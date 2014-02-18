@@ -1,8 +1,35 @@
-".container": {
-	backgroundColor:"white"
-},
 "Label": {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "#000"
+	color: "#000",
+	font: {
+		fontSize: 20,
+		fontFamily: 'Helvetica Neue'
+	},
+	textAlign: 'center'
 } 
+
+"#MainWindow": {
+	backgroundColor: "#EEE",
+},
+"#MainWindow[platform=android]": {
+	navBarHidden: true,
+	exitOnClose: true
+},
+"#MainWindow[platform=android formFactor=tablet]": {
+	orientationModes: [
+		Ti.UI.LANDSCAPE_LEFT
+	]
+},
+"#MainWindow[formFactor=handheld]": {
+	orientationModes: [
+		Ti.UI.PORTRAIT
+	]
+},
+"#GlobalWrapper": {
+	width: "100%"
+},
+"#ContentWrapper": {
+	top: "0dp",
+	bottom: "0dp"
+}

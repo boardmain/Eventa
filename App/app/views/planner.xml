@@ -1,0 +1,6 @@
+<Alloy>
+	<View id="Wrapper" name="Planner">
+		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" image="data/logo.png" />
+		<Label id="label">Planner Todo</Label>
+	</View>
+</Alloy>

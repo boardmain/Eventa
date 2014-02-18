@@ -1,0 +1,6 @@
+<Alloy>
+	<View id="Wrapper" name="Collections">
+		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" image="data/logo.png" />
+		<Label id="label">Collections Todo</Label>
+	</View>
+</Alloy>

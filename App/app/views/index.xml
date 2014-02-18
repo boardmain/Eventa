@@ -1,5 +1,9 @@
 <Alloy>
-	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
+	<Window id="MainWindow">
+		<Require type="widget" src="com.mcongrove.slideMenu" id="SlideMenu" />
+		
+		<View id="GlobalWrapper">
+			<View id="ContentWrapper"/>		
+		</View>
 	</Window>
 </Alloy>
