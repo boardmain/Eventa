@@ -85,6 +85,18 @@ var APP = {
 		online: Ti.Network.online
 	},
 	/**
+	 * Device Location
+	 * @type {Object}
+	 * @param {String} city Closest city designation
+	 * @param {String} region Closest region designation
+	 * @param {String} country Closest country designation
+	 */
+	Location: {
+		city: null,
+		region: null,
+		country: null
+	},
+	/**
 	 * Current controller view stack index
 	 * @type {Number}
 	 */

@@ -1,0 +1,1 @@
+module.exports = [{"isApi":true,"priority":1000.0018,"key":"Label","style":{top:"10dp",left:"15dp",right:"15dp",bottom:"15dp",height:Ti.UI.SIZE,font:{fontSize:"14dp",fontFamily:"HelveticaNeue",},color:"#000",}},{"isId":true,"priority":100000.0017,"key":"Wrapper","style":{layout:"vertical",}}];
