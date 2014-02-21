@@ -14,10 +14,8 @@ var APP = require("core");
 
 // Create the node items for the Slide Menu
 var nodes = [
-	{ id: 0, title: "Planner"},
-	{ id: 1, title: "Collections"},
-	{ id: 2, title: "Discover"},
-	{ id: 3, title: "Settings" }
+	{ id: 0, title: "Events"},
+	{ id: 1, title: "Feedback"}
 ];
 
 // Make sure there's always a reference to global elements throughout the APP singleton

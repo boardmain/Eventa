@@ -1,6 +1,0 @@
-<Alloy>
-	<View id="Wrapper" name="Discover">
-		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" image="data/logo.png" />
-		<Label id="label">Discover Todo</Label>
-	</View>
-</Alloy>

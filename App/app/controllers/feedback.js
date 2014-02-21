@@ -1,8 +1,7 @@
 /**
- * Main controller for the Discover section
+ * Main controller for the Feedback section
  * 
- * @class Controllers.discover
- * @uses Models.discover
+ * @class Controllers.feedback
  * @uses core
  */
 
@@ -13,7 +12,7 @@ var CONFIG = arguments[0];
  * Initializes the controller
  */
 $.init = function() {
-	APP.log("debug", "discover.init | " + JSON.stringify(CONFIG));
+	APP.log("debug", "feedback.init | " + JSON.stringify(CONFIG));
 	
 	$.NavigationBar.setBackgroundColor(APP.Color.primary);
 

@@ -30,6 +30,5 @@
 	width: "100%"
 },
 "#ContentWrapper": {
-	top: "0dp",
-	bottom: "0dp"
+	top: "0dp"
 }

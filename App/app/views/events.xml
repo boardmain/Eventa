@@ -1,0 +1,11 @@
+<Alloy>
+	<View id="Wrapper" name="events">
+		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
+		<Label id="label" />		
+		<View id="tableWrapper">
+			<TableView id="container">
+				
+			</TableView>
+		</View>
+	</View>
+</Alloy>

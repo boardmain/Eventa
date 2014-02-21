@@ -41,16 +41,10 @@ function Controller() {
     var APP = require("core");
     var nodes = [ {
         id: 0,
-        title: "Planner"
+        title: "Events"
     }, {
         id: 1,
-        title: "Collections"
-    }, {
-        id: 2,
-        title: "Discover"
-    }, {
-        id: 3,
-        title: "Settings"
+        title: "Feedback"
     } ];
     APP.MainWindow = $.MainWindow;
     APP.GlobalWrapper = $.GlobalWrapper;

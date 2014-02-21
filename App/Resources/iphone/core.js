@@ -33,9 +33,9 @@ var APP = {
         online: Ti.Network.online
     },
     Location: {
-        city: "",
-        region: "",
-        country: ""
+        city: null,
+        region: null,
+        country: null
     },
     currentStack: -1,
     previousScreen: null,
@@ -55,7 +55,6 @@ var APP = {
         Ti.App.addEventListener("close", APP.exitObserver);
         Ti.App.addEventListener("resumed", APP.resumeObserver);
         APP.determineDevice();
-        APP.determineLocation();
         APP.buildMenu();
         APP.MainWindow.open();
         APP.handleNavigation(0);
@@ -65,39 +64,6 @@ var APP = {
     determineDevice: function() {
         APP.Device.os = "IOS";
         "IPHONE" == Ti.Platform.osname.toUpperCase() ? APP.Device.name = "IPHONE" : "IPAD" == Ti.Platform.osname.toUpperCase() && (APP.Device.name = "IPAD");
-    },
-    determineLocation: function() {
-        var coordinates = new Object();
-        Titanium.Geolocation.getCurrentPosition(function(e) {
-            if (!e.success || e.error) {
-                alert("error " + JSON.stringify(e.error));
-                return;
-            }
-            coordinates.longitude = e.coords.longitude;
-            coordinates.latitude = e.coords.latitude;
-            coordinates.altitude = e.coords.altitude;
-            coordinates.heading = e.coords.heading;
-            coordinates.accuracy = e.coords.accuracy;
-            coordinates.speed = e.coords.speed;
-            coordinates.timestamp = e.coords.timestamp;
-            coordinates.altitudeAccuracy = e.coords.altitudeAccuracy;
-            APP.log("info", "speed " + coordinates.speed);
-            APP.log("info", "geo - current location: " + new Date(coordinates.timestamp) + " long " + coordinates.longitude + " lat " + coordinates.latitude + " accuracy " + coordinates.accuracy);
-        });
-        Titanium.Geolocation.reverseGeocoder(coordinates.latitude, coordinates.longitude, function(e) {
-            if (e.success) {
-                APP.Location.city = e.places.city;
-                APP.Location.region = e.places.region1;
-                APP.Location.country = e.places.country;
-                APP.log("debug", "reverse geolocation result = " + JSON.stringify(e));
-            } else {
-                Ti.UI.createAlertDialog({
-                    title: "Reverse geo error, cannot find address",
-                    message: e.error
-                }).show();
-                APP.log("debug", "Geo Error: " + e.error);
-            }
-        });
     },
     buildMenu: function() {
         APP.log("debug", "APP.buildMenu");

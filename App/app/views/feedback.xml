@@ -1,0 +1,6 @@
+<Alloy>
+	<View id="Wrapper" name="Feedback">
+		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
+		<Label id="label">Feedback Todo</Label>
+	</View>
+</Alloy>

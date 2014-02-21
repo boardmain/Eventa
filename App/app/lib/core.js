@@ -413,7 +413,11 @@ var APP = {
 	 * Opens the Slide Menu
 	 */
 	openMenu: function() {
-		APP.SlideMenu.Wrapper.left = "0dp";
+		APP.SlideMenu.Wrapper.animate({
+			left: "0dp",
+			duration: 250,
+			curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
+		});
 		APP.GlobalWrapper.animate({
 			left: "200dp",
 			duration: 250,
@@ -426,7 +430,12 @@ var APP = {
 	 * Closes the Slide Menu
 	 */
 	closeMenu: function() {
-		APP.SlideMenu.Wrapper.left = "-200dp";
+		APP.SlideMenu.Wrapper.animate({
+			left: "-200dp",
+			duration: 250,
+			curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
+		});
+		
 		APP.GlobalWrapper.animate({
 			left: "0dp",
 			duration: 250,

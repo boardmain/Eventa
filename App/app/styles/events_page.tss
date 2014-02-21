@@ -1,0 +1,32 @@
+"#Wrapper": {
+	backgroundColor: "#FFF",
+	layout: "vertical"
+},
+"#container": {
+	top: "0dp",
+	layout: "vertical",
+	showVerticalScrollIndicator: true,
+	scrollType: "vertical",
+	contentHeight: Ti.UI.SIZE
+},
+"#heading": {
+	top: "15dp",
+	left: "15dp",
+	right: "15dp",
+	height: Ti.UI.SIZE,
+	font: {
+		fontSize: "18dp",
+		fontFamily: "HelveticaNeue-Light"
+	}
+},
+"#date": {
+	top: "5dp",
+	left: "15dp",
+	right: "15dp",
+	height: Ti.UI.SIZE,
+	font: {
+		fontSize: "11dp",
+		fontFamily: "HelveticaNeue"
+	},
+	color: "#000"
+}

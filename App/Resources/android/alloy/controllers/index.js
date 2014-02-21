@@ -39,7 +39,6 @@ function Controller() {
     $.__views.MainWindow.add($.__views.GlobalWrapper);
     $.__views.ContentWrapper = Ti.UI.createView({
         top: "0dp",
-        bottom: "0dp",
         id: "ContentWrapper"
     });
     $.__views.GlobalWrapper.add($.__views.ContentWrapper);
@@ -48,16 +47,10 @@ function Controller() {
     var APP = require("core");
     var nodes = [ {
         id: 0,
-        title: "Planner"
+        title: "Events"
     }, {
         id: 1,
-        title: "Collections"
-    }, {
-        id: 2,
-        title: "Discover"
-    }, {
-        id: 3,
-        title: "Settings"
+        title: "Feedback"
     } ];
     APP.MainWindow = $.MainWindow;
     APP.GlobalWrapper = $.GlobalWrapper;

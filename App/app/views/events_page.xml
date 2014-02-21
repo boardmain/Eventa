@@ -1,0 +1,11 @@
+<Alloy>
+	<View id="Wrapper" name="Event Page">
+		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
+		
+		<ScrollView id="container">
+			<Label id="heading" />
+			<Label id="date" />
+			<WebView id="webview" />
+		</ScrollView>
+	</View>
+</Alloy>

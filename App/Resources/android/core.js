@@ -68,32 +68,6 @@ var APP = {
         APP.Device.width = APP.Device.width / (APP.Device.dpi / 160);
         APP.Device.height = APP.Device.height / (APP.Device.dpi / 160);
     },
-    determineLocation: function() {
-        var coordinates = new Object();
-        Titanium.Geolocation.getCurrentPosition(function(e) {
-            if (!e.success || e.error) {
-                alert("error " + JSON.stringify(e.error));
-                return;
-            }
-            coordinates.longitude = e.coords.longitude;
-            coordinates.latitude = e.coords.latitude;
-            APP.log("info", "geo - current location:  long " + coordinates.longitude + " lat " + coordinates.latitude);
-        });
-        Titanium.Geolocation.reverseGeocoder(coordinates.latitude, coordinates.longitude, function(e) {
-            if (e.success) {
-                APP.Location.city = e.places[0].city;
-                APP.Location.region = e.places[0].region1;
-                APP.Location.country = e.places[0].country;
-                APP.log("debug", "reverse geolocation result = " + JSON.stringify(e));
-            } else {
-                Ti.UI.createAlertDialog({
-                    title: "Reverse geo error, cannot find address",
-                    message: e.error
-                }).show();
-                APP.log("debug", "Geo Error: " + e.error);
-            }
-        });
-    },
     buildMenu: function() {
         APP.log("debug", "APP.buildMenu");
         APP.SlideMenu.init({
@@ -185,7 +159,11 @@ var APP = {
         APP.SlideMenuOpen ? APP.closeMenu() : APP.openMenu();
     },
     openMenu: function() {
-        APP.SlideMenu.Wrapper.left = "0dp";
+        APP.SlideMenu.Wrapper.animate({
+            left: "0dp",
+            duration: 250,
+            curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
+        });
         APP.GlobalWrapper.animate({
             left: "200dp",
             duration: 250,
@@ -194,7 +172,11 @@ var APP = {
         APP.SlideMenuOpen = true;
     },
     closeMenu: function() {
-        APP.SlideMenu.Wrapper.left = "-200dp";
+        APP.SlideMenu.Wrapper.animate({
+            left: "-200dp",
+            duration: 250,
+            curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
+        });
         APP.GlobalWrapper.animate({
             left: "0dp",
             duration: 250,
