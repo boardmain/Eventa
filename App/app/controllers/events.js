@@ -29,6 +29,8 @@ $.init = function() {
 		APP.toggleMenu();
 	});	
 	
+	APP.openLoading();
+	
 	var coordinates = new Object;
 	// Get current position
 	Titanium.Geolocation.getCurrentPosition(function(e)
@@ -79,9 +81,9 @@ $.getEventbriteEvents = function (location) {
 	    onerror: function(e) {
 			// this function is called when an error occurs, including a timeout
 	        Ti.API.debug(e.error);
-	        alert('error');
+	        alert(e.error);
 	    },
-	    timeout:5000  /* in milliseconds */
+	    timeout:15000  /* in milliseconds */
 	});
 	client.open("GET", url);
 	client.send();  // request is actually sent with this statement  
@@ -102,13 +104,22 @@ $.handleData = function() {
 		var row = Alloy.createController("events_row", {
 			id: i,
 			heading: DATA.events[i].event.title,
-			subHeading: DATA.events[i].event.start_date
+			subHeading: $.getDate(DATA.events[i].event.start_date)
 		}).getView();
 
 		rows.push(row);
 	}
 
 	$.container.setData(rows);
+	APP.closeLoading();
+};
+
+$.getDate = function (dateString) {
+	var dateArray = dateString.split(" ");
+	var dayArray = dateArray[0].split("-");
+	var timeArray = dateArray[1].split(":");
+	var date = new Date(parseInt(dayArray[0]), parseInt(dayArray[1])-1, parseInt(dayArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]), parseInt(timeArray[2]));
+	return date;
 };
 
 // Event listeners
@@ -119,7 +130,8 @@ $.container.addEventListener("click", function(_event) {
 		id: _event.row.id,
 		title: DATA.events[_event.row.id].event.title,
 		description: DATA.events[_event.row.id].event.description,
-		time: DATA.events[_event.row.id].event.start_date
+		startDate: DATA.events[_event.row.id].event.start_date,
+		endDate: DATA.events[_event.row.id].event.end_date
 	});
 });
 
@@ -127,7 +139,8 @@ $.makeURL = function () {
 	var url = "https://www.eventbrite.com/json/event_search?app_key=" 
 				+ eventbriteAPIKey 
 				+ "&city=" + $.getCity() 
-				+ "&region=" + APP.Location.region;	
+				+ "&region=" + APP.Location.region
+				+ "&max=" + 100;
 	return url;
 };
 

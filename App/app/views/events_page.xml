@@ -5,6 +5,7 @@
 		<ScrollView id="container">
 			<Label id="heading" />
 			<Label id="date" />
+			<Label id="address"/>
 			<WebView id="webview" />
 		</ScrollView>
 	</View>

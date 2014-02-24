@@ -29,7 +29,8 @@ $.handleData = function() {
 	$.handleNavigation();
 
 	$.heading.text = CONFIG.title;
-	$.date.text = CONFIG.time;
+	$.date.text = $.getDate(CONFIG.startDate);
+	$.address.text = $.getAddress(CONFIG.id);
 	$.webview.setHtml('<html><body>' + CONFIG.description + '</body></html>');
 
 	$.NavigationBar.setBackgroundColor(APP.Color.primary);
@@ -58,7 +59,8 @@ $.handleNavigation = function() {
 					id: CONFIG.id + 1,
 					title: DATA.events[CONFIG.id + 1].event.title,
 					description: DATA.events[CONFIG.id + 1].event.description,
-					time: DATA.events[CONFIG.id + 1].event.start_date
+					startDate: DATA.events[CONFIG.id + 1].event.start_date,
+					endDate: DATA.events[CONFIG.id + 1].event.end_date
 				}, false, true);
 			}			
 		},
@@ -69,7 +71,8 @@ $.handleNavigation = function() {
 					id: CONFIG.id - 1,
 					title: DATA.events[CONFIG.id - 1].event.title,
 					description: DATA.events[CONFIG.id - 1].event.description,
-					time: DATA.events[CONFIG.id - 1].event.start_date
+					startDate: DATA.events[CONFIG.id - 1].event.start_date,
+					endDate: DATA.events[CONFIG.id - 1].event.end_date
 				}, false, true);
 			}			
 		}
@@ -100,35 +103,63 @@ $.showActions = function (_event) {
 };
 
 $.addEventToCalendar = function () {
-	var calendars = Ti.Calendar.getSelectableCalendars();
-	var calendar = calendars[0];    
-	var startDateArray = CONFIG.time.split(" ");
-	var dayArray = startDateArray[0].split("-");
-	var timeArray = startDateArray[1].split(":");
 	
-	// Create the event
-	var eventBegins = new Date(parseInt(dayArray[0]), parseInt(dayArray[1]), parseInt(dayArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]), parseInt(timeArray[2]));
-	var eventEnds = new Date(parseInt(dayArray[0]), parseInt(dayArray[1]), parseInt(dayArray[2]), parseInt(timeArray[0]+1), parseInt(timeArray[1]), parseInt(timeArray[2]));
-	var details = {
-	    title: CONFIG.title,
-	    description: CONFIG.description,
-	    begin: eventBegins,
-	    end: eventEnds
-	};
+	if (OS_ANDROID){
+		// Create the event
+		var eventBegins = $.getDate(CONFIG.startDate);
+		var eventEnds = $.getDate(CONFIG.endDate);
+		var details = {
+		    title: CONFIG.title,
+		    description: CONFIG.description,
+		    begin: eventBegins,
+		    end: eventEnds
+		};
+		var calendars = Ti.Calendar.getSelectableCalendars();		
+		var event = calendars[0].createEvent(details);
+		alert("Event successfully added to calendar");
+		
+	} else if (OS_IOS){
+		// Create the event
+		var eventBegins = $.getDate(CONFIG.startDate);
+		var eventEnds = $.getDate(CONFIG.endDate);
+		var details = {
+		    title: CONFIG.title,
+		    notes: CONFIG.description,
+		    begin: eventBegins,
+		    end: eventEnds
+		};
+		var calendar = Ti.Calendar.getDefaultCalendar();
+		if (Ti.Calendar.eventsAuthorization == Ti.Calendar.AUTHORIZATION_AUTHORIZED) {
+		    calendar.createEvent(details);
+		    alert("Event successfully added to calendar");
+		} else {
+		    Ti.Calendar.requestEventsAuthorization(function(e){
+		        if (e.success) {
+		            calendar.createEvent(details);
+		            alert("Event successfully added to calendar");
+		        } else {
+		            alert('Access to calendar is not allowed');
+		        }
+		    });             
+		}
+	}
 	
-	calendar.createEvent(details);
 	
-	// if (Ti.Calendar.eventsAuthorization == Ti.Calendar.AUTHORIZATION_AUTHORIZED) {
-	    // calendar.createEvent(details);
-	// } else {
-	    // Ti.Calendar.requestEventsAuthorization(function(e){
-	        // if (e.success) {
-	            // calendar.createEvent(details);
-	        // } else {
-	            // alert('Access to calendar is not allowed');
-	        // }
-	    // });             
-	// }
+};
+
+$.getDate = function (dateString) {
+	var dateArray = dateString.split(" ");
+	var dayArray = dateArray[0].split("-");
+	var timeArray = dateArray[1].split(":");
+	var date = new Date(parseInt(dayArray[0]), parseInt(dayArray[1])-1, parseInt(dayArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]), parseInt(timeArray[2]));
+	return date;
+};
+
+$.getAddress = function (id) {
+	var name = DATA.events[id].event.venue.name;
+	var address = DATA.events[id].event.venue.address;
+	var city = DATA.events[id].event.venue.city;
+	return name + ", " + address + ", " + city;
 };
 
 // Kick off the init

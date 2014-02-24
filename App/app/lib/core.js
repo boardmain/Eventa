@@ -13,7 +13,7 @@ var APP = {
 	 * Application ID
 	 * @type {String}
 	 */
-	ID: "Prosopic.001",
+	ID: "Eventa.001",
 	/**
 	 * Application version
 	 * @type {String}
@@ -137,6 +137,21 @@ var APP = {
 	 */
 	ACS: null,
 	/**
+	 * The loading view
+	 * @type {Object}
+	 */
+	Loading: Alloy.createWidget("com.mcongrove.loading").getView(),
+	/**
+	 * Whether or not to cancel the loading screen open because it's already open
+	 * @type {Boolean}
+	 */
+	cancelLoading: false,
+	/**
+	 * Whether or not the loading screen is open
+	 * @type {Boolean}
+	 */
+	loadingOpen: false,
+	/**
 	 * Slide Menu widget
 	 * @type {Object}
 	 */
@@ -224,15 +239,6 @@ var APP = {
 		// Add a handler for the nodes (make sure we remove existing ones first)
 		APP.SlideMenu.Nodes.removeEventListener("click", APP.handleMenuClick);
 		APP.SlideMenu.Nodes.addEventListener("click", APP.handleMenuClick);
-
-		// Listen for gestures on the main window to open/close the slide menu
-		APP.GlobalWrapper.addEventListener("swipe", function(_event) {
-			if(_event.direction == "right") {
-				APP.openMenu();
-			} else if(_event.direction == "left") {
-				APP.closeMenu();
-			}			
-		});
 	},
 	/**
 	 * Set up ACS
@@ -527,6 +533,32 @@ var APP = {
 			APP.removeChild();
 		} else {
 			APP.MainWindow.close();
+		}
+	},
+	/**
+	 * Shows the loading screen
+	 */
+	openLoading: function() {
+		APP.cancelLoading = false;
+
+		setTimeout(function() {
+			if(!APP.cancelLoading) {
+				APP.loadingOpen = true;
+
+				APP.GlobalWrapper.add(APP.Loading);
+			}
+		}, 100);
+	},
+	/**
+	 * Closes the loading screen
+	 */
+	closeLoading: function() {
+		APP.cancelLoading = true;
+
+		if(APP.loadingOpen) {
+			APP.GlobalWrapper.remove(APP.Loading);
+
+			APP.loadingOpen = false;
 		}
 	}	
 };

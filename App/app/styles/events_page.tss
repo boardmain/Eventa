@@ -25,8 +25,17 @@
 	right: "15dp",
 	height: Ti.UI.SIZE,
 	font: {
-		fontSize: "11dp",
+		fontSize: "12dp",
 		fontFamily: "HelveticaNeue"
 	},
 	color: "#000"
+},
+"#address": {
+	top: "5dp",
+	left: "15dp",
+	right: "15dp",
+	height: Ti.UI.SIZE,
+	font: {
+		fontSize: "12dp",
+	},
 }

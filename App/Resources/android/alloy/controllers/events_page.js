@@ -45,13 +45,24 @@ function Controller() {
         right: "15dp",
         height: Ti.UI.SIZE,
         font: {
-            fontSize: "11dp",
+            fontSize: "12dp",
             fontFamily: "HelveticaNeue"
         },
         color: "#000",
         id: "date"
     });
     $.__views.container.add($.__views.date);
+    $.__views.address = Ti.UI.createLabel({
+        top: "5dp",
+        left: "15dp",
+        right: "15dp",
+        height: Ti.UI.SIZE,
+        font: {
+            fontSize: "12dp"
+        },
+        id: "address"
+    });
+    $.__views.container.add($.__views.address);
     $.__views.webview = Ti.UI.createWebView({
         id: "webview"
     });
@@ -70,7 +81,8 @@ function Controller() {
         APP.log("debug", "events_page.handleData");
         $.handleNavigation();
         $.heading.text = CONFIG.title;
-        $.date.text = CONFIG.time;
+        $.date.text = $.getDate(CONFIG.startDate);
+        $.address.text = $.getAddress(CONFIG.id);
         $.webview.setHtml("<html><body>" + CONFIG.description + "</body></html>");
         $.NavigationBar.setBackgroundColor(APP.Color.primary);
         $.NavigationBar.showBack(function() {
@@ -91,7 +103,8 @@ function Controller() {
                         id: CONFIG.id + 1,
                         title: DATA.events[CONFIG.id + 1].event.title,
                         description: DATA.events[CONFIG.id + 1].event.description,
-                        time: DATA.events[CONFIG.id + 1].event.start_date
+                        startDate: DATA.events[CONFIG.id + 1].event.start_date,
+                        endDate: DATA.events[CONFIG.id + 1].event.end_date
                     }, false, true);
                 }
             },
@@ -102,7 +115,8 @@ function Controller() {
                         id: CONFIG.id - 1,
                         title: DATA.events[CONFIG.id - 1].event.title,
                         description: DATA.events[CONFIG.id - 1].event.description,
-                        time: DATA.events[CONFIG.id - 1].event.start_date
+                        startDate: DATA.events[CONFIG.id - 1].event.start_date,
+                        endDate: DATA.events[CONFIG.id - 1].event.end_date
                     }, false, true);
                 }
             }
@@ -128,20 +142,33 @@ function Controller() {
         dialog.show();
     };
     $.addEventToCalendar = function() {
-        var calendars = Ti.Calendar.getSelectableCalendars();
-        var calendar = calendars[0];
-        var startDateArray = CONFIG.time.split(" ");
-        var dayArray = startDateArray[0].split("-");
-        var timeArray = startDateArray[1].split(":");
-        var eventBegins = new Date(parseInt(dayArray[0]), parseInt(dayArray[1]), parseInt(dayArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]), parseInt(timeArray[2]));
-        var eventEnds = new Date(parseInt(dayArray[0]), parseInt(dayArray[1]), parseInt(dayArray[2]), parseInt(timeArray[0] + 1), parseInt(timeArray[1]), parseInt(timeArray[2]));
+        var eventBegins;
+        var eventEnds;
+        var details;
+        var eventBegins = $.getDate(CONFIG.startDate);
+        var eventEnds = $.getDate(CONFIG.endDate);
         var details = {
             title: CONFIG.title,
             description: CONFIG.description,
             begin: eventBegins,
             end: eventEnds
         };
-        calendar.createEvent(details);
+        var calendars = Ti.Calendar.getSelectableCalendars();
+        calendars[0].createEvent(details);
+        alert("Event successfully added to calendar");
+    };
+    $.getDate = function(dateString) {
+        var dateArray = dateString.split(" ");
+        var dayArray = dateArray[0].split("-");
+        var timeArray = dateArray[1].split(":");
+        var date = new Date(parseInt(dayArray[0]), parseInt(dayArray[1]) - 1, parseInt(dayArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]), parseInt(timeArray[2]));
+        return date;
+    };
+    $.getAddress = function(id) {
+        var name = DATA.events[id].event.venue.name;
+        var address = DATA.events[id].event.venue.address;
+        var city = DATA.events[id].event.venue.city;
+        return name + ", " + address + ", " + city;
     };
     $.init();
     _.extend($, exports);

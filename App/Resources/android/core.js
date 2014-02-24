@@ -1,7 +1,7 @@
 var Alloy = require("alloy");
 
 var APP = {
-    ID: "Prosopic.001",
+    ID: "Eventa.001",
     VERSION: "1.0.0",
     LEGAL: {
         COPYRIGHT: "Copyright ‌2014 Prosopic, Inc.",
@@ -45,6 +45,9 @@ var APP = {
     GlobalWrapper: null,
     ContentWrapper: null,
     ACS: null,
+    Loading: Alloy.createWidget("com.mcongrove.loading").getView(),
+    cancelLoading: false,
+    loadingOpen: false,
     SlideMenu: null,
     SlideMenuOpen: false,
     init: function() {
@@ -79,9 +82,6 @@ var APP = {
         });
         APP.SlideMenu.Nodes.removeEventListener("click", APP.handleMenuClick);
         APP.SlideMenu.Nodes.addEventListener("click", APP.handleMenuClick);
-        APP.GlobalWrapper.addEventListener("swipe", function(_event) {
-            "right" == _event.direction ? APP.openMenu() : "left" == _event.direction && APP.closeMenu();
-        });
     },
     initACS: function() {
         APP.log("debug", "APP.initACS");
@@ -234,6 +234,22 @@ var APP = {
         var stack;
         stack = APP.controllerStacks[APP.currentStack];
         stack.length > 1 ? APP.removeChild() : APP.MainWindow.close();
+    },
+    openLoading: function() {
+        APP.cancelLoading = false;
+        setTimeout(function() {
+            if (!APP.cancelLoading) {
+                APP.loadingOpen = true;
+                APP.GlobalWrapper.add(APP.Loading);
+            }
+        }, 100);
+    },
+    closeLoading: function() {
+        APP.cancelLoading = true;
+        if (APP.loadingOpen) {
+            APP.GlobalWrapper.remove(APP.Loading);
+            APP.loadingOpen = false;
+        }
     }
 };
 
