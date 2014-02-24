@@ -1,6 +1,5 @@
 "#Wrapper": {
 	height: Ti.UI.SIZE,
-	selectedBackgroundColor: "#EEE",
 	backgroundColor: "#FFF"
 },
 "#container": {

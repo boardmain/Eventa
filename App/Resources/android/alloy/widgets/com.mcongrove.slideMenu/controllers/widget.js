@@ -78,8 +78,7 @@ function Controller() {
                 id: _params.nodes[i].id,
                 height: "47dp",
                 backgroundcolor: "#111",
-                backgroundSelectedColor: "#222",
-                selectedBackgroundColor: "#222"
+                backgroundSelectedColor: "#222"
             });
             var label = Ti.UI.createLabel({
                 text: _params.nodes[i].title,

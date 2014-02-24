@@ -8,7 +8,6 @@ function Controller() {
     var exports = {};
     $.__views.Wrapper = Ti.UI.createTableViewRow({
         height: Ti.UI.SIZE,
-        selectedBackgroundColor: "#EEE",
         backgroundColor: "#FFF",
         id: "Wrapper"
     });
