@@ -24,7 +24,7 @@ $.init = function() {
 	
 	$.NavigationBar.showMenu(function(_event) {
 		APP.toggleMenu();
-	});	
+	});
 };
 
 // Kick off the init
