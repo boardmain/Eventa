@@ -35,7 +35,12 @@ function Controller() {
         $.NavigationBar.showMenu(function() {
             APP.toggleMenu();
         });
-        $.webview.setLoading(true);
+        $.webview.addEventListener("beforeload", function() {
+            APP.openLoading();
+        });
+        $.webview.addEventListener("load", function() {
+            APP.closeLoading();
+        });
     };
     $.init();
     _.extend($, exports);

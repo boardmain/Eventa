@@ -25,6 +25,14 @@ $.init = function() {
 	$.NavigationBar.showMenu(function(_event) {
 		APP.toggleMenu();
 	});
+	
+	$.webview.addEventListener("beforeload", function(e){
+		APP.openLoading();
+	});
+	
+	$.webview.addEventListener("load", function(e){
+		APP.closeLoading();
+	});
 };
 
 // Kick off the init
