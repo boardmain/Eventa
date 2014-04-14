@@ -32,7 +32,6 @@ function Controller() {
     $.__views.MainWindow.add($.__views.GlobalWrapper);
     $.__views.ContentWrapper = Ti.UI.createView({
         top: "0dp",
-        bottom: "0dp",
         id: "ContentWrapper"
     });
     $.__views.GlobalWrapper.add($.__views.ContentWrapper);

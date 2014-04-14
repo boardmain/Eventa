@@ -17,21 +17,11 @@ function Controller() {
         __parentSymbol: $.__views.Wrapper
     });
     $.__views.NavigationBar.setParent($.__views.Wrapper);
-    $.__views.label = Ti.UI.createLabel({
-        top: "10dp",
-        left: "15dp",
-        right: "15dp",
-        bottom: "15dp",
-        height: Ti.UI.SIZE,
-        font: {
-            fontSize: "14dp",
-            fontFamily: "HelveticaNeue"
-        },
-        color: "#000",
-        text: "Feedback Todo",
-        id: "label"
+    $.__views.webview = Ti.UI.createWebView({
+        id: "webview",
+        url: "https://docs.google.com/forms/d/1Oj5OqA40nlimopcr0CKSlc1PSeq_zNZZGL-zIbX6pa0/viewform"
     });
-    $.__views.Wrapper.add($.__views.label);
+    $.__views.Wrapper.add($.__views.webview);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var APP = require("core");
@@ -44,6 +34,12 @@ function Controller() {
         });
         $.NavigationBar.showMenu(function() {
             APP.toggleMenu();
+        });
+        $.webview.addEventListener("beforeload", function() {
+            APP.openLoading();
+        });
+        $.webview.addEventListener("load", function() {
+            APP.closeLoading();
         });
     };
     $.init();

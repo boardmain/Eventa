@@ -440,8 +440,7 @@ var APP = {
 			left: "-200dp",
 			duration: 250,
 			curve: Ti.UI.ANIMATION_CURVE_EASE_IN_OUT
-		});
-		
+		});		
 		APP.GlobalWrapper.animate({
 			left: "0dp",
 			duration: 250,

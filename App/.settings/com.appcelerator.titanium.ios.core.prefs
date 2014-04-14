@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+iosLaunchConfigurationAttributes/ATTR_MINIFY=true
+iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=Eventa
+iosLaunchConfigurationAttributes/appid=com.prosopic.eventa
+iosLaunchConfigurationAttributes/certificate=alvin Mwijuka (7U25T888U3)
+iosLaunchConfigurationAttributes/keychain=
+iosLaunchConfigurationAttributes/sdk_version=7.0.3
+iosLaunchConfigurationAttributes/uuid=6FDC90A0-E1E9-4F9C-8CEA-448E2A5AE9B7
+provisioning_profiles/development/6FDC90A0-E1E9-4F9C-8CEA-448E2A5AE9B7/appid=com.prosopic.eventa
+provisioning_profiles/development/6FDC90A0-E1E9-4F9C-8CEA-448E2A5AE9B7/name=Eventa Test
+provisioning_profiles/development/6FDC90A0-E1E9-4F9C-8CEA-448E2A5AE9B7/uuid=6FDC90A0-E1E9-4F9C-8CEA-448E2A5AE9B7

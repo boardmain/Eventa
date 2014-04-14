@@ -40,7 +40,7 @@ function Controller() {
     var APP = require("core");
     var CONFIG = arguments[0];
     var eventbriteAPIKey = "PAFBRDDGNHBZDJPBJS";
-    var DATA;
+    DATA = null;
     $.init = function() {
         APP.log("debug", "planner.init | " + JSON.stringify(CONFIG));
         $.NavigationBar.setBackgroundColor(APP.Color.primary);
@@ -50,6 +50,7 @@ function Controller() {
         $.NavigationBar.showMenu(function() {
             APP.toggleMenu();
         });
+        APP.openLoading();
         var coordinates = new Object();
         Titanium.Geolocation.getCurrentPosition(function(e) {
             if (!e.success || e.error) {
@@ -58,6 +59,7 @@ function Controller() {
             }
             coordinates.longitude = e.coords.longitude;
             coordinates.latitude = e.coords.latitude;
+            alert(coordinates.latitude + " " + coordinates.longitude);
             APP.log("info", "geo - current location:  long " + coordinates.longitude + " lat " + coordinates.latitude);
         });
         Titanium.Geolocation.reverseGeocoder(coordinates.latitude, coordinates.longitude, function(e) {
@@ -86,9 +88,9 @@ function Controller() {
             },
             onerror: function(e) {
                 Ti.API.debug(e.error);
-                alert("error");
+                alert(e.error);
             },
-            timeout: 5e3
+            timeout: 15e3
         });
         client.open("GET", url);
         client.send();
@@ -104,11 +106,19 @@ function Controller() {
             var row = Alloy.createController("events_row", {
                 id: i,
                 heading: DATA.events[i].event.title,
-                subHeading: DATA.events[i].event.start_date
+                subHeading: $.getDate(DATA.events[i].event.start_date)
             }).getView();
             rows.push(row);
         }
         $.container.setData(rows);
+        APP.closeLoading();
+    };
+    $.getDate = function(dateString) {
+        var dateArray = dateString.split(" ");
+        var dayArray = dateArray[0].split("-");
+        var timeArray = dateArray[1].split(":");
+        var date = new Date(parseInt(dayArray[0]), parseInt(dayArray[1]) - 1, parseInt(dayArray[2]), parseInt(timeArray[0]), parseInt(timeArray[1]), parseInt(timeArray[2]));
+        return date;
     };
     $.container.addEventListener("click", function(_event) {
         APP.log("debug", "events @click " + _event.row.id);
@@ -116,11 +126,12 @@ function Controller() {
             id: _event.row.id,
             title: DATA.events[_event.row.id].event.title,
             description: DATA.events[_event.row.id].event.description,
-            time: DATA.events[_event.row.id].event.start_date
+            startDate: DATA.events[_event.row.id].event.start_date,
+            endDate: DATA.events[_event.row.id].event.end_date
         });
     });
     $.makeURL = function() {
-        var url = "https://www.eventbrite.com/json/event_search?app_key=" + eventbriteAPIKey + "&city=" + $.getCity() + "&region=" + APP.Location.region;
+        var url = "https://www.eventbrite.com/json/event_search?app_key=" + eventbriteAPIKey + "&city=" + $.getCity() + "&region=" + APP.Location.region + "&max=" + 100;
         return url;
     };
     $.getCity = function() {

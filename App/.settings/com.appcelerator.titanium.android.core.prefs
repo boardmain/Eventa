@@ -1,0 +1,10 @@
+android/ATTR_MINIFY=true
+android/ATTR_PROJECT_NAME=Eventa
+android/abi=armeabi-v7a
+android/distribute_path=/Users/alvintm/Documents/Eventa
+android/keystore_alias=eventa
+android/keystore_password=maniche
+android/keystore_path=/Users/alvintm/android.keystore
+android/recent_output=/Users/alvintm/Documents/Eventa
+android/sdk_version=4.1.2
+eclipse.preferences.version=1

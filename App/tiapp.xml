@@ -9,10 +9,10 @@
     <id>com.prosopic.eventa</id>
     <name>Eventa</name>
     <version>1.0</version>
-    <publisher>alvintm</publisher>
+    <publisher>Alvin Mwijuka</publisher>
     <url>http://eventa.prosopic.com</url>
     <description>not specified</description>
-    <copyright>2014 by Prosopic, Inc.</copyright>
+    <copyright>2014 by Alvin Mwijuka</copyright>
     <icon>appicon.png</icon>
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>

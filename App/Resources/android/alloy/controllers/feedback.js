@@ -19,7 +19,7 @@ function Controller() {
     $.__views.NavigationBar.setParent($.__views.Wrapper);
     $.__views.webview = Ti.UI.createWebView({
         id: "webview",
-        url: "https://docs.google.com/forms/d/17F76NCXieNeRbs440sC0OR_cysoGxQizzu4vbke7nFg/viewform"
+        url: "https://docs.google.com/forms/d/1Oj5OqA40nlimopcr0CKSlc1PSeq_zNZZGL-zIbX6pa0/viewform"
     });
     $.__views.Wrapper.add($.__views.webview);
     exports.destroy = function() {};
