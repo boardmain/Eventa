@@ -1,7 +1,7 @@
 /**
  * The loading overlay widget
  * 
- * @class Widgets.com.mcongrove.loading
+ * @class Widgets.com.eventa.loading
  */
 if(Ti.Platform.osname === "mobileweb") {
 	$.Loading.duration = 100;

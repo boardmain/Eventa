@@ -1,11 +1,11 @@
 /**
  * The detail navigation widget
  * 
- * @class Widgets.com.mcongrove.detailNavigation
+ * @class Widgets.com.eventa.detailNavigation
  */
 
 /**
- * @member Widgets.com.mcongrove.detailNavigation
+ * @member Widgets.com.eventa.detailNavigation
  * @property {Object} CONFIG
  * @property {Function} CONFIG.color The color of the icons (either "white" or "black")
  * @property {Function} CONFIG.up The function to run on 'up' press

@@ -1,7 +1,7 @@
 /**
  * The slide menu widget
  * 
- * @class Widgets.com.mcongrove.slideMenu
+ * @class Widgets.com.eventa.slideMenu
  */
 var sections = [];
 var nodes = [];

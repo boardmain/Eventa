@@ -1,11 +1,11 @@
 /**
  * The navigation bar widget
  * 
- * @class Widgets.com.mcongrove.navigationBar
+ * @class Widgets.com.eventa.navigationBar
  */
 
 /**
- * @member Widgets.com.mcongrove.navigationBar
+ * @member Widgets.com.eventa.navigationBar
  * @property {Object} CONFIG
  * @property {String} CONFIG.image The image to show in the navigation bar (optional)
  * @property {String} CONFIG.text The text to show in the navigation bar (optional)
