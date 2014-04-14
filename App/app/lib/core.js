@@ -27,9 +27,7 @@ var APP = {
 	 * @param {String} PRIVACY Privacy Policy URL
 	 */
 	LEGAL: {
-		COPYRIGHT: "Copyright ‌2014 Prosopic, Inc.",
-		TOS: "http://www.prosopic.com/legal/terms-conditions",
-		PRIVACY: "http://www.prosopic.com/legal/privacy"
+		COPYRIGHT: "Copyright ‌2014 Alvin T. Mwijuka.",
 	},
 	/**
 	 * All the component nodes for the Slide Menu
@@ -140,7 +138,7 @@ var APP = {
 	 * The loading view
 	 * @type {Object}
 	 */
-	Loading: Alloy.createWidget("com.mcongrove.loading").getView(),
+	Loading: Alloy.createWidget("com.eventa.loading").getView(),
 	/**
 	 * Whether or not to cancel the loading screen open because it's already open
 	 * @type {Boolean}
