@@ -12,7 +12,7 @@ function Controller() {
         name: "events"
     });
     $.__views.Wrapper && $.addTopLevelView($.__views.Wrapper);
-    $.__views.NavigationBar = Alloy.createWidget("com.mcongrove.navigationBar", "widget", {
+    $.__views.NavigationBar = Alloy.createWidget("com.eventa.navigationBar", "widget", {
         id: "NavigationBar",
         __parentSymbol: $.__views.Wrapper
     });
@@ -59,7 +59,6 @@ function Controller() {
             }
             coordinates.longitude = e.coords.longitude;
             coordinates.latitude = e.coords.latitude;
-            alert(coordinates.latitude + " " + coordinates.longitude);
             APP.log("info", "geo - current location:  long " + coordinates.longitude + " lat " + coordinates.latitude);
         });
         Titanium.Geolocation.reverseGeocoder(coordinates.latitude, coordinates.longitude, function(e) {

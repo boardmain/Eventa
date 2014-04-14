@@ -12,7 +12,7 @@ function Controller() {
         name: "Feedback"
     });
     $.__views.Wrapper && $.addTopLevelView($.__views.Wrapper);
-    $.__views.NavigationBar = Alloy.createWidget("com.mcongrove.navigationBar", "widget", {
+    $.__views.NavigationBar = Alloy.createWidget("com.eventa.navigationBar", "widget", {
         id: "NavigationBar",
         __parentSymbol: $.__views.Wrapper
     });

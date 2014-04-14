@@ -4,9 +4,7 @@ var APP = {
     ID: "Eventa.001",
     VERSION: "1.0.0",
     LEGAL: {
-        COPYRIGHT: "Copyright ‌2014 Prosopic, Inc.",
-        TOS: "http://www.prosopic.com/legal/terms-conditions",
-        PRIVACY: "http://www.prosopic.com/legal/privacy"
+        COPYRIGHT: "Copyright ‌2014 Alvin T. Mwijuka."
     },
     Nodes: [],
     Color: {
@@ -45,7 +43,7 @@ var APP = {
     GlobalWrapper: null,
     ContentWrapper: null,
     ACS: null,
-    Loading: Alloy.createWidget("com.mcongrove.loading").getView(),
+    Loading: Alloy.createWidget("com.eventa.loading").getView(),
     cancelLoading: false,
     loadingOpen: false,
     SlideMenu: null,

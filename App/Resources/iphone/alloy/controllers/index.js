@@ -20,7 +20,7 @@ function Controller() {
         return o;
     }());
     $.__views.MainWindow && $.addTopLevelView($.__views.MainWindow);
-    $.__views.SlideMenu = Alloy.createWidget("com.mcongrove.slideMenu", "widget", {
+    $.__views.SlideMenu = Alloy.createWidget("com.eventa.slideMenu", "widget", {
         id: "SlideMenu",
         __parentSymbol: $.__views.MainWindow
     });

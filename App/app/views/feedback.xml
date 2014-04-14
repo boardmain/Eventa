@@ -1,6 +1,6 @@
 <Alloy>
 	<View id="Wrapper" name="Feedback">
-		<Require type="widget" src="com.mcongrove.navigationBar" id="NavigationBar" />
+		<Require type="widget" src="com.eventa.navigationBar" id="NavigationBar" />
 		<WebView id="webview" url="https://docs.google.com/forms/d/1Oj5OqA40nlimopcr0CKSlc1PSeq_zNZZGL-zIbX6pa0/viewform"/>
 	</View>
 </Alloy>

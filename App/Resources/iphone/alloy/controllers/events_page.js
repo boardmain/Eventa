@@ -13,7 +13,7 @@ function Controller() {
         name: "Event Page"
     });
     $.__views.Wrapper && $.addTopLevelView($.__views.Wrapper);
-    $.__views.NavigationBar = Alloy.createWidget("com.mcongrove.navigationBar", "widget", {
+    $.__views.NavigationBar = Alloy.createWidget("com.eventa.navigationBar", "widget", {
         id: "NavigationBar",
         __parentSymbol: $.__views.Wrapper
     });
@@ -93,7 +93,7 @@ function Controller() {
         });
     };
     $.handleNavigation = function() {
-        var navigation = Alloy.createWidget("com.mcongrove.detailNavigation", null, {
+        var navigation = Alloy.createWidget("com.eventa.detailNavigation", null, {
             color: "white",
             down: function() {
                 var dataLength = DATA.events.length;

@@ -1,1 +1,1 @@
-module.exports={"dependencies":{"com.mcongrove.navigationBar":"1.1","com.mcongrove.slideMenu":"1.1","com.mcongrove.detailNavigation":"1.1","com.mcongrove.loading":"1.0"}};
+module.exports={"dependencies":{"com.eventa.navigationBar":"1.1","com.eventa.slideMenu":"1.1","com.eventa.detailNavigation":"1.1","com.eventa.loading":"1.0"}};
