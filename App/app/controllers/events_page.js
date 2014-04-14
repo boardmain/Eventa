@@ -3,7 +3,7 @@
  * 
  * @class Controllers.events_page
  * @uses core
- * @uses Widgets.com.mcongrove.detailNavigation
+ * @uses Widgets.com.eventa.detailNavigation
  */
 var APP = require("core");
 var DATE = require("alloy/moment");
@@ -49,7 +49,7 @@ $.handleData = function() {
  */
 $.handleNavigation = function() {
 	
-	var navigation = Alloy.createWidget("com.mcongrove.detailNavigation", null, {
+	var navigation = Alloy.createWidget("com.eventa.detailNavigation", null, {
 		color: "white",
 		down: function(_event) {
 			var dataLength = DATA.events.length;
